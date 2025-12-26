@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Deployment Interface</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1><i class="fas fa-cloud-upload-alt"></i> Website Deployment</h1>
+            <p class="subtitle">Upload and deploy your website files</p>
+        </header>
+
+        <main class="main-content">
+            <div class="panel left-panel">
+                <h2><i class="fas fa-cogs"></i> Deployment Configuration</h2>
+                
+                <form id="deployForm" class="deploy-form">
+                    <div class="form-group">
+                        <label for="siteName"><i class="fas fa-globe"></i> Website Name</label>
+                        <input type="text" id="siteName" placeholder="Enter your website name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="fileType"><i class="fas fa-file"></i> File Type</label>
+                        <select id="fileType">
+                            <option value="html">Single HTML File</option>
+                            <option value="zip">ZIP Archive</option>
+                            <option value="js">JavaScript File</option>
+                            <option value="css">CSS File</option>
+                            <option value="multiple">Multiple Files</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label><i class="fas fa-upload"></i> Upload Files</label>
+                        <div class="file-upload-area" id="fileInputCustom">
+                            <div class="file-upload-content">
+                                <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                                <span id="fileName">Choose a file</span>
+                                <span class="file-hint">Click to browse or drag and drop</span>
+                            </div>
+                            <input type="file" id="htmlFile" class="file-input">
+                        </div>
+                        
+                        <div id="fileInfo" class="file-info">
+                            <p><i class="fas fa-info-circle"></i> <span id="fileCount">0</span> files selected:</p>
+                            <div id="fileList" class="file-list"></div>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" id="deployBtn" class="deploy-btn">
+                        <span>Deploy Website</span>
+                        <div class="spinner" id="spinner"></div>
+                    </button>
+                </form>
+                
+                <div class="stats">
+                    <h3><i class="fas fa-chart-bar"></i> Deployment Stats</h3>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <span class="stat-label">Total</span>
+                            <span id="totalDeployments" class="stat-value">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Successful</span>
+                            <span id="successDeployments" class="stat-value success">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Failed</span>
+                            <span id="failedDeployments" class="stat-value failed">0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="panel right-panel">
+                <h2><i class="fas fa-terminal"></i> Console Output</h2>
+                <div class="console">
+                    <div class="console-header">
+                        <div class="console-dots">
+                            <span class="console-dot red"></span>
+                            <span class="console-dot yellow"></span>
+                            <span class="console-dot green"></span>
+                        </div>
+                        <span class="console-title">deployment-log</span>
+                    </div>
+                    <div id="consoleOutput" class="console-output">
+                        <div class="console-line">$ System initialized. Ready for deployment.</div>
+                        <div class="console-line">$ Select file type and upload files to begin.</div>
+                    </div>
+                </div>
+                
+                <div id="resultPanel" class="result-panel hidden">
+                    <h3><i class="fas fa-check-circle"></i> Deployment Result</h3>
+                    <div id="resultMessage" class="result-message"></div>
+                </div>
+                
+                <div id="infoPanel" class="info-panel hidden">
+                    <h3><i class="fas fa-link"></i> Website Information</h3>
+                    <div class="info-content">
+                        <p><strong>URL:</strong> <span id="websiteUrl" class="website-url">https://example.com</span></p>
+                        <div class="info-actions">
+                            <a id="visitLink" href="#" target="_blank" class="info-btn">
+                                <i class="fas fa-external-link-alt"></i> Visit Website
+                            </a>
+                            <button id="copyUrl" class="info-btn">
+                                <i class="far fa-copy"></i> Copy URL
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <footer class="footer">
+            <p>Website Deployment Interface &copy; <span id="currentYear"></span> | All file uploads are simulated</p>
+        </footer>
+    </div>
+</body>
+</html>

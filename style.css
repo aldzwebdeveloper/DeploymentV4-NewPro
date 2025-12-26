@@ -1,0 +1,519 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #2a2a2a 100%);
+    color: #f0f0f0;
+    min-height: 100vh;
+    padding: 20px;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* Header Styles */
+.header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.header h1 {
+    font-size: 2.8rem;
+    margin-bottom: 10px;
+    background: linear-gradient(90deg, #fff 0%, #aaa 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.header .subtitle {
+    font-size: 1.1rem;
+    color: #aaa;
+    font-weight: 300;
+}
+
+/* Main Content Layout */
+.main-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+@media (max-width: 1024px) {
+    .main-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Panel Styles */
+.panel {
+    background: rgba(30, 30, 30, 0.8);
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+}
+
+.panel h2 {
+    font-size: 1.6rem;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.panel h2 i {
+    color: #888;
+}
+
+/* Form Styles */
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #ddd;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+input, select {
+    width: 100%;
+    padding: 14px 18px;
+    background: rgba(20, 20, 20, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    color: #f0f0f0;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
+}
+
+input::placeholder {
+    color: #777;
+}
+
+/* File Upload Styles */
+.file-upload-area {
+    position: relative;
+    border: 2px dashed rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    padding: 40px 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: rgba(15, 15, 15, 0.6);
+    overflow: hidden;
+}
+
+.file-upload-area:hover {
+    border-color: rgba(255, 255, 255, 0.3);
+    background: rgba(25, 25, 25, 0.6);
+}
+
+.file-upload-area.has-file {
+    border-color: rgba(100, 255, 100, 0.3);
+    background: rgba(20, 40, 20, 0.4);
+}
+
+.file-upload-content {
+    pointer-events: none;
+}
+
+.upload-icon {
+    font-size: 3rem;
+    color: #777;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.file-upload-area span {
+    display: block;
+    color: #ddd;
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+}
+
+.file-hint {
+    font-size: 0.9rem;
+    color: #888;
+}
+
+.file-input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* File Info Styles */
+.file-info {
+    margin-top: 20px;
+    background: rgba(10, 10, 10, 0.6);
+    border-radius: 10px;
+    padding: 15px;
+    border-left: 4px solid #888;
+}
+
+.file-info p {
+    margin-bottom: 10px;
+    color: #bbb;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.file-list {
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.file-item {
+    padding: 10px;
+    background: rgba(20, 20, 20, 0.8);
+    border-radius: 6px;
+    margin-bottom: 8px;
+    border-left: 3px solid #666;
+    font-size: 0.9rem;
+    color: #ccc;
+}
+
+.file-item:last-child {
+    margin-bottom: 0;
+}
+
+/* Deploy Button */
+.deploy-btn {
+    width: 100%;
+    padding: 18px;
+    background: linear-gradient(90deg, #222 0%, #444 100%);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+    margin-top: 10px;
+}
+
+.deploy-btn:hover:not(:disabled) {
+    background: linear-gradient(90deg, #333 0%, #555 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 7px 15px rgba(0, 0, 0, 0.2);
+}
+
+.deploy-btn:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+.deploy-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.spinner {
+    display: none;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Stats Styles */
+.stats {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.stats h3 {
+    margin-bottom: 20px;
+    color: #ddd;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.stat-item {
+    background: rgba(20, 20, 20, 0.8);
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.stat-label {
+    display: block;
+    color: #aaa;
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+}
+
+.stat-value {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.stat-value.success {
+    color: #4CAF50;
+}
+
+.stat-value.failed {
+    color: #F44336;
+}
+
+/* Console Styles */
+.console {
+    background: #111;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.console-header {
+    background: #1a1a1a;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.console-dots {
+    display: flex;
+    gap: 8px;
+}
+
+.console-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.console-dot.red {
+    background: #FF5F56;
+}
+
+.console-dot.yellow {
+    background: #FFBD2E;
+}
+
+.console-dot.green {
+    background: #27CA3F;
+}
+
+.console-title {
+    color: #888;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.console-output {
+    padding: 20px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.95rem;
+    height: 300px;
+    overflow-y: auto;
+    line-height: 1.5;
+}
+
+.console-line {
+    margin-bottom: 8px;
+    color: #ccc;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+.console-line:last-child {
+    margin-bottom: 0;
+}
+
+.console-line.error {
+    color: #ff6b6b;
+}
+
+/* Result Panel Styles */
+.result-panel, .info-panel {
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 25px;
+    border-left: 5px solid;
+    transition: all 0.3s ease;
+}
+
+.result-panel {
+    background: rgba(30, 30, 30, 0.8);
+    border-left-color: #888;
+}
+
+.result-panel.success {
+    background: rgba(30, 60, 30, 0.8);
+    border-left-color: #4CAF50;
+}
+
+.result-panel.error {
+    background: rgba(60, 30, 30, 0.8);
+    border-left-color: #F44336;
+}
+
+.result-panel.loading {
+    background: rgba(30, 30, 60, 0.8);
+    border-left-color: #2196F3;
+}
+
+.result-panel h3, .info-panel h3 {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.result-message {
+    line-height: 1.6;
+    color: #ddd;
+}
+
+.info-panel {
+    background: rgba(30, 40, 50, 0.8);
+    border-left-color: #2196F3;
+}
+
+.info-content {
+    margin-top: 15px;
+}
+
+.website-url {
+    display: inline-block;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 8px 12px;
+    border-radius: 6px;
+    margin-top: 5px;
+    word-break: break-all;
+    color: #4fc3f7;
+}
+
+.info-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.info-btn {
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    flex: 1;
+    text-align: center;
+}
+
+#visitLink {
+    background: rgba(33, 150, 243, 0.2);
+    color: #4fc3f7;
+    border: 1px solid rgba(33, 150, 243, 0.3);
+}
+
+#visitLink:hover {
+    background: rgba(33, 150, 243, 0.3);
+}
+
+#copyUrl {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ddd;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+#copyUrl:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 40px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    color: #777;
+    font-size: 0.9rem;
+}
+
+/* Utility Classes */
+.hidden {
+    display: none !important;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
